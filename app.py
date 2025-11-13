@@ -27,9 +27,16 @@ def main():
     Ask questions about the Brazilian E-commerce data in natural language!
     
     Examples:
-    - What are the top 5 product categories by revenue?
-    - Show me the average order value by month
-    - Which state has the most customers?
+    - Which city has the most customers?
+    - Which state has the highest number of unique customers?
+    - What are the top 5 ZIP code prefixes by customer count?
+    - Show me the total number of customers by state.
+    - Show me the number of unique customers by city.
+    - Which states have fewer than 100 customers?
+    - Show me all duplicate customer_id records.
+    - Show me the customer distribution by ZIP code prefix.
+    - Which cities have the highest number of unique customers?
+    - Show me how many missing values each column has.
     """)
     
     # Initialize session state
