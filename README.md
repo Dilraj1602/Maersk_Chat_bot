@@ -15,6 +15,25 @@ An intelligent chat interface that allows users to explore and analyze the Olist
 
 - **Frontend:** Streamlit
 - **Backend:** Python
+# Maersk GenAI Agent - Olist E-commerce Data Explorer
+
+![UI Preview](screenshot/ui.png)
+
+An intelligent chat interface that allows users to explore and analyze the Olist Brazilian E-commerce dataset using natural language queries.
+
+## 🎯 Features
+
+- Natural language interface to query e-commerce data
+- Dynamic SQL/Pandas query generation using LLM
+- Interactive visualizations using Plotly
+- Conversation memory and context management
+- Support for complex analytical queries
+- Automatic visualization selection based on data type
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Streamlit
+- **Backend:** Python
 - **AI Model:** Google Gemini API
 - **Data Processing:** Pandas, SQLite
 - **Agent Framework:** LangChain
