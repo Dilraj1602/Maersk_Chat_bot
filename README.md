@@ -18,7 +18,7 @@ An intelligent chat interface that allows users to explore and analyze the Olist
 # Maersk GenAI Agent - Olist E-commerce Data Explorer
 
 ![UI Preview](screenshot/ui.png)
-
+![UI Preview](screenshot/Ui_output.png)
 An intelligent chat interface that allows users to explore and analyze the Olist Brazilian E-commerce dataset using natural language queries.
 
 ## 🎯 Features
