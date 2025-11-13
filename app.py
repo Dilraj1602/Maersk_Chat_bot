@@ -40,8 +40,14 @@ def main():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-            if "visualization" in message:
-                st.plotly_chart(message["visualization"])
+            # Only plot when a valid visualization object is present
+            viz = message.get("visualization")
+            if viz is not None:
+                try:
+                    st.plotly_chart(viz)
+                except Exception:
+                    # If it's not a valid Plotly figure, render it generically
+                    st.write(viz)
     
     # Chat input
     if prompt := st.chat_input("Ask about the Olist data..."):
@@ -60,8 +66,12 @@ def main():
                 
                 # Display response
                 st.markdown(response["text"])
-                if "visualization" in response:
-                    st.plotly_chart(response["visualization"])
+                viz = response.get("visualization")
+                if viz is not None:
+                    try:
+                        st.plotly_chart(viz)
+                    except Exception:
+                        st.write(viz)
                 
                 # Add assistant response to chat history
                 st.session_state.messages.append({

@@ -2,7 +2,12 @@ from typing import Dict, Any, Optional
 import os
 import re
 import logging
-import google.generativeai as genai
+try:
+    import google.generativeai as genai
+except Exception as _e:  # pragma: no cover - environment-specific
+    # Defer raising until runtime so importing this module doesn't crash apps
+    genai = None
+    _IMPORT_GOOGLE_GENAI_ERROR = _e
 from dotenv import load_dotenv
 from .data_handler import DataHandler
 from .utils import create_visualization
@@ -21,6 +26,20 @@ class QueryAgent:
 
     def __init__(self, data_handler: DataHandler):
         load_dotenv()
+        # If the google.generativeai package failed to import earlier, raise a
+        # clear error at runtime (so importing the module doesn't immediately crash),
+        # with guidance on how to fix it.
+        if genai is None:  # pragma: no cover - runtime dependency
+            err_msg = (
+                "The 'google.generativeai' package is not available.\n"
+                "Install it with: pip install google-generativeai\n"
+                "If it is already installed, ensure there are no conflicting 'google' packages that shadow the namespace.\n"
+            )
+            # Attach the original import error if available for debugging
+            if "_IMPORT_GOOGLE_GENAI_ERROR" in globals():
+                err_msg += f"Original import error: {_IMPORT_GOOGLE_GENAI_ERROR!r}"
+            raise ImportError(err_msg)
+
         genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
         # Gemini / OpenRouter model wrapper
